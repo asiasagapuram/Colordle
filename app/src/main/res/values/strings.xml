@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Colordle</string>
+    <string name="play_colordle">Play Colordle</string>
+    <string name="play_colordle2">Play Colordle 2</string>
 </resources>
