@@ -7,4 +7,7 @@
     <color name="secondary_color">#77b5d9</color>
     <color name="mid_color">#5388B8</color>
     <color name="third_color">#14397d</color>
+    <color name="wrong">#999999</color>
+    <color name="inplace">#ffcf66</color>
+    <color name="correct">#66c666</color>
 </resources>

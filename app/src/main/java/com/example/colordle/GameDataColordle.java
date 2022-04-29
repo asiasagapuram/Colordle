@@ -8,11 +8,13 @@ public class GameDataColordle implements GameInterfaceColordle {
     private String answerColordle2; //for colordle 2
     private String[] answerColordle; //for colordle 1
     private HashMap<String, Integer> prevGuesses; //for Colordle 1
+    private int tries;
 
     public GameDataColordle() {
         String hex = String.format("#%06x", new Random().nextInt(0xffffff + 1)).substring(1);
         this.answerColordle2 = hex;
         this.answerColordle = hex.split("");
+        this.tries = 0;
     }
 
     @Override // used to check data when doing front end tests
@@ -34,10 +36,12 @@ public class GameDataColordle implements GameInterfaceColordle {
         return prevGuesses;
     }
 
+    public int getTries() { return tries; }
+
     @Override
     public int[] checkGuess(String[] currGuess) {
         //0 = wrong, 1 = wrong spot, 2 = correct spot
-
+        tries += 1;
         //check if null
         if (currGuess == null || answerColordle == null) {
             return null;
