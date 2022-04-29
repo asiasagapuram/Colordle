@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Colordle">
         <activity
+            android:name=".Help"
+            android:exported="false" />
+        <activity
+            android:name=".Colordle2Game"
+            android:exported="false" />
+        <activity
+            android:name=".ColordleGame"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
