@@ -15,6 +15,11 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO need to implement page switching
 
+        //UI color palette follow 60|30|10 rule
+        //@colors.base_color
+        //@colors.secondary_color
+        //@colors.third_color
+
         //IDEA FOR IMPLEMENTATION OF CLASSES
         //on main page select either colordle or colordle2
         //on page entry of colordle, instantiates GameDataColordle class
