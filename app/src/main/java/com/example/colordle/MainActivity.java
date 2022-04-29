@@ -2,6 +2,7 @@ package com.example.colordle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -31,10 +32,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtnClickColordle(View view) {
-        startActivity(new Intent(this, activity_colordle.class));
+        startActivity(new Intent(this, ColordleGame.class));
+        finish();
     }
 
     public void onBtnClickColordle2(View view) {
-        startActivity(new Intent(this, activity_colordle2.class));
+        startActivity(new Intent(this, Colordle2Game.class));
+        finish();
+    }
+
+    public void onBtnClickHelp(View view) {
+        startActivity(new Intent(this, Help.class));
+        finish();
     }
 }
