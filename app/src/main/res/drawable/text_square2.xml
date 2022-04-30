@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--  res/drawable/rounded_edittext.values-night -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <corners
@@ -11,13 +10,7 @@
         android:width="50dp"
         android:height="50dp"
         />
-    <gradient
-        android:gradientRadius="50%p"
-        android:startColor="@color/base_color"
-        android:centerColor="@color/base_color"
-        android:endColor="@color/darkbase_color"
-        android:type="radial"
+    <solid
+        android:color="@color/white"
         />
-    <stroke android:width="1dp"
-        android:color="@color/darkbase_color"/>
 </shape>
