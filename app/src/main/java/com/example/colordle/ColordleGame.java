@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,26 +12,57 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 public class ColordleGame extends AppCompatActivity {
 
     private GameDataColordle gameInstance;
+    private Button guessBtn;
+    private ImageView imageView;
+    private EditText letter1;
+    private EditText letter2;
+    private EditText letter3;
+    private EditText letter4;
+    private EditText letter5;
+    private EditText letter6;
+    private Boolean lastBox;
+    private String validChars;
+    private Boolean invalidChar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_colordle_game);
-        //limits characters and auto switches edit text
-        EditText letter1 = (EditText) findViewById(R.id.editText1_1);
-        EditText letter2 = (EditText) findViewById(R.id.editText1_2);
-        EditText letter3 = (EditText) findViewById(R.id.editText1_3);
-        EditText letter4 = (EditText) findViewById(R.id.editText1_4);
-        EditText letter5 = (EditText) findViewById(R.id.editText1_5);
-        EditText letter6 = (EditText) findViewById(R.id.editText1_6);
-        TextWatcher textWatcher = new TextWatcher() {
+        //initializes Views
+        initializeViews();
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Starts the Game
+        startGame();
+    }
+
+    private void initializeViews() {
+        lastBox = false;
+        imageView = findViewById(R.id.colorAnswer);
+        letter1 = findViewById(R.id.editText1_1);
+        letter2 = findViewById(R.id.editText1_2);
+        letter3 = findViewById(R.id.editText1_3);
+        letter4 = findViewById(R.id.editText1_4);
+        letter5 = findViewById(R.id.editText1_5);
+        letter6 = findViewById(R.id.editText1_6);
+        guessBtn = findViewById(R.id.colorGuess1);
+        validChars = "0123456789ABCDEFabcdef";
+        invalidChar = false;
+
+        letter1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -42,80 +74,192 @@ public class ColordleGame extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (editable.hashCode() == letter1.hashCode()) {
-                    if (editable.toString().length() == 1 && !letter2.isEnabled()){
-                        letter1.setEnabled(false);
-                        letter2.setEnabled(true);
-                        letter2.requestFocus();
-                    }
-                } else if (editable.hashCode() == letter2.hashCode()) {
-                    if (editable.toString().length() == 1 && !letter3.isEnabled()){
-                        letter2.setEnabled(false);
+                System.out.println(letter1.getText());
+                if (!validChars.contains(letter1.getText())) {
+                    editable.replace(0, editable.length(),"");
+                    Toast.makeText(ColordleGame.this, "Only 0-9 and A-F is allowed", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (letter1.length() == 1) {
+                    letter2.setEnabled(true);
+                    letter2.requestFocus();
+                    letter1.setEnabled(false);
+                }
+            }
+        });
+
+        letter2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                System.out.println(letter2.getText());
+                if (!validChars.contains(letter2.getText())) {
+                    letter2.removeTextChangedListener(this);
+                    editable.replace(0, editable.length(),"");
+                    letter2.addTextChangedListener(this);
+                    Toast.makeText(ColordleGame.this, "Only 0-9 and A-F is allowed", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (letter2.length() == 0) {
+                    letter1.setEnabled(true);
+                    letter1.requestFocus();
+                    letter2.setEnabled(false);
+                } else if (letter2.length() == 1) {
+                    letter3.setEnabled(true);
+                    letter3.requestFocus();
+                    letter2.setEnabled(false);
+                }
+            }
+        });
+
+        letter3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                System.out.println(letter3.getText());
+                if (!validChars.contains(letter3.getText())) {
+                    letter3.removeTextChangedListener(this);
+                    editable.replace(0, editable.length(),"");
+                    letter3.addTextChangedListener(this);
+                    Toast.makeText(ColordleGame.this, "Only 0-9 and A-F is allowed", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    invalidChar = false;
+                }
+                if (letter3.length() == 0) {
+                    letter2.setEnabled(true);
+                    letter2.requestFocus();
+                    letter3.setEnabled(false);
+                } else if (letter3.length() == 1) {
+                    letter4.setEnabled(true);
+                    letter4.requestFocus();
+                    letter3.setEnabled(false);
+                }
+            }
+        });
+
+        letter4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                System.out.println(letter4.getText());
+                if (!validChars.contains(letter4.getText())) {
+                    letter4.removeTextChangedListener(this);
+                    editable.replace(0, editable.length(),"");
+                    letter4.addTextChangedListener(this);
+                    Toast.makeText(ColordleGame.this, "Only 0-9 and A-F is allowed", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    if (letter4.length() == 0) {
                         letter3.setEnabled(true);
                         letter3.requestFocus();
-                    } else if (editable.toString().length() == 0 && !letter1.isEnabled()) {
-                        letter1.setEnabled(true);
-                        letter2.setEnabled(false);
-                        letter1.requestFocus();
-                    }
-                } else if (editable.hashCode() == letter3.hashCode()) {
-                    if (editable.toString().length() == 1 && !letter4.isEnabled()){
-                        letter3.setEnabled(false);
-                        letter4.setEnabled(true);
-                        letter4.requestFocus();
-                    } else if (editable.toString().length() == 0 && !letter2.isEnabled()) {
-                        letter2.setEnabled(true);
-                        letter3.setEnabled(false);
-                        letter2.requestFocus();
-                    }
-                } else if (editable.hashCode() == letter4.hashCode()) {
-                    if (editable.toString().length() == 1 && !letter5.isEnabled()){
                         letter4.setEnabled(false);
+                    } else if (letter4.length() == 1) {
                         letter5.setEnabled(true);
                         letter5.requestFocus();
-                    } else if (editable.toString().length() == 0 && !letter3.isEnabled()) {
-                        letter3.setEnabled(true);
                         letter4.setEnabled(false);
-                        letter3.requestFocus();
-                    }
-                } else if (editable.hashCode() == letter5.hashCode()) {
-                    if (editable.toString().length() == 1 && !letter6.isEnabled()){
-                        letter5.setEnabled(false);
-                        letter6.setEnabled(true);
-                        letter6.requestFocus();
-                    } else if (editable.toString().length() == 0 && !letter4.isEnabled()) {
-                        letter4.setEnabled(true);
-                        letter5.setEnabled(false);
-                        letter4.requestFocus();
-                    }
-                } else if (editable.hashCode() == letter6.hashCode()) {
-                    if (editable.toString().length() == 1){
-                        letter6.clearFocus();
-                    } else if (editable.toString().length() == 0 && !letter5.isEnabled()) {
-                        letter5.setEnabled(true);
-                        letter6.setEnabled(false);
-                        letter5.requestFocus();
                     }
                 }
             }
-        };
-        letter1.addTextChangedListener(textWatcher);
-        letter2.addTextChangedListener(textWatcher);
-        letter3.addTextChangedListener(textWatcher);
-        letter4.addTextChangedListener(textWatcher);
-        letter5.addTextChangedListener(textWatcher);
-        letter6.addTextChangedListener(textWatcher);
+        });
+        //sets auto switching between boxes when typing and deleting (convenience)
+        letter5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                System.out.println(letter5.getText());
+                if (!validChars.contains(letter5.getText())) {
+                    letter5.removeTextChangedListener(this);
+                    editable.replace(0, editable.length(),"");
+                    letter5.addTextChangedListener(this);
+                    Toast.makeText(ColordleGame.this, "Only 0-9 and A-F is allowed", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    if (letter5.length() == 0) {
+                        letter4.setEnabled(true);
+                        letter4.requestFocus();
+                        letter5.setEnabled(false);
+                    } else if (letter3.length() == 1) {
+                        letter6.setEnabled(true);
+                        letter6.requestFocus();
+                        letter5.setEnabled(false);
+                    }
+                }
+            }
+        });
+
+        letter6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                System.out.println(letter6.getText());
+                if (!validChars.contains(letter6.getText())) {
+                    letter6.removeTextChangedListener(this);
+                    editable.replace(0, editable.length(),"");
+                    letter6.addTextChangedListener(this);
+                    Toast.makeText(ColordleGame.this, "Only 0-9 and A-F is allowed", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    if (letter6.length() == 0) {
+                        letter5.setEnabled(true);
+                        letter5.requestFocus();
+                        letter6.setEnabled(false);
+                        lastBox = false;
+                    } else if (letter3.length() == 1) {
+                        lastBox = true;
+                    }
+                }
+            }
+        });
+
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        //creates game Instance
+    private void startGame() {
+        //Creates game instance
         gameInstance = new GameDataColordle();
-        //Finds image id
-        ImageView image = (ImageView) findViewById(R.id.colorAnswer);
         //sets image color to answer color
-        image.setBackgroundColor(Color.parseColor(gameInstance.getAnswerColordle2()));
+        Drawable background = imageView.getBackground();
+        background.setTint(Color.parseColor("#"+gameInstance.getAnswerColordle2()));
     }
 
     public void onBtnClickMainPage(View view) {
@@ -125,13 +269,13 @@ public class ColordleGame extends AppCompatActivity {
     }
 
     public void onBtnClickGuess(View view) {
-        //When guess button is clicked
-        EditText letter1 = (EditText) findViewById(R.id.editText1_1);
-        EditText letter2 = (EditText) findViewById(R.id.editText1_2);
-        EditText letter3 = (EditText) findViewById(R.id.editText1_3);
-        EditText letter4 = (EditText) findViewById(R.id.editText1_4);
-        EditText letter5 = (EditText) findViewById(R.id.editText1_5);
-        EditText letter6 = (EditText) findViewById(R.id.editText1_6);
+        //set new letters?
+
+        //Check if all boxes are filled
+        if (lastBox == false) {
+            return;
+        }
+
         //Create array of guesses
         EditText[] guesses = {
                 letter1,
