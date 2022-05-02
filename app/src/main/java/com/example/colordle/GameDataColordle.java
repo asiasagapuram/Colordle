@@ -11,10 +11,11 @@ public class GameDataColordle implements GameInterfaceColordle {
     private int tries;
 
     public GameDataColordle() {
-        String hex = String.format("#%06x", new Random().nextInt(0xffffff + 1)).substring(1);
+        String hex = String.format("#%06x", new Random().nextInt(0xffffff + 1)).substring(1).toUpperCase();
         this.answerColordle2 = hex;
         this.answerColordle = hex.split("");
         this.tries = 0;
+        this.prevGuesses = new HashMap<String, Integer>();
     }
 
     @Override // used to check data when doing front end tests
@@ -52,12 +53,12 @@ public class GameDataColordle implements GameInterfaceColordle {
 
         for (int i=0; i < currGuess.length; i++) {
             //fill results
-            results[i] = (currGuess[i].equals(answerColordle[i])) ? 2 : (Arrays.asList(answerColordle).contains(currGuess[i]) ? 1 : 0);
+            results[i] = (currGuess[i].toUpperCase().equals(answerColordle[i])) ? 2 : (Arrays.asList(answerColordle).contains(currGuess[i].toUpperCase()) ? 1 : 0);
             //fill with previous guesses
             if (!prevGuesses.containsKey(currGuess[i])) {
                 prevGuesses.put(currGuess[i], results[i]);
             }
-        } // System.out.println(Arrays.toString(colorCode));
+        }
 
         //results is array ex: {0,1,2,0,0,0}
         return results;

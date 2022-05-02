@@ -2,6 +2,7 @@ package com.example.colordle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -9,15 +10,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
 import java.util.Arrays;
-import java.util.Locale;
 
 public class ColordleGame extends AppCompatActivity {
 
@@ -32,7 +32,6 @@ public class ColordleGame extends AppCompatActivity {
     private EditText letter6;
     private Boolean lastBox;
     private String validChars;
-    private Boolean invalidChar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +51,14 @@ public class ColordleGame extends AppCompatActivity {
     private void initializeViews() {
         lastBox = false;
         imageView = findViewById(R.id.colorAnswer);
-        letter1 = findViewById(R.id.editText1_1);
-        letter2 = findViewById(R.id.editText1_2);
-        letter3 = findViewById(R.id.editText1_3);
-        letter4 = findViewById(R.id.editText1_4);
-        letter5 = findViewById(R.id.editText1_5);
-        letter6 = findViewById(R.id.editText1_6);
+        letter1 = findViewById(R.id.editText1);
+        letter2 = findViewById(R.id.editText2);
+        letter3 = findViewById(R.id.editText3);
+        letter4 = findViewById(R.id.editText4);
+        letter5 = findViewById(R.id.editText5);
+        letter6 = findViewById(R.id.editText6);
         guessBtn = findViewById(R.id.colorGuess1);
         validChars = "0123456789ABCDEFabcdef";
-        invalidChar = false;
 
         letter1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -74,7 +72,6 @@ public class ColordleGame extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                System.out.println(letter1.getText());
                 if (!validChars.contains(letter1.getText())) {
                     editable.replace(0, editable.length(),"");
                     Toast.makeText(ColordleGame.this, "Only 0-9 and A-F is allowed", Toast.LENGTH_SHORT).show();
@@ -100,7 +97,6 @@ public class ColordleGame extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                System.out.println(letter2.getText());
                 if (!validChars.contains(letter2.getText())) {
                     letter2.removeTextChangedListener(this);
                     editable.replace(0, editable.length(),"");
@@ -132,15 +128,12 @@ public class ColordleGame extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                System.out.println(letter3.getText());
                 if (!validChars.contains(letter3.getText())) {
                     letter3.removeTextChangedListener(this);
                     editable.replace(0, editable.length(),"");
                     letter3.addTextChangedListener(this);
                     Toast.makeText(ColordleGame.this, "Only 0-9 and A-F is allowed", Toast.LENGTH_SHORT).show();
                     return;
-                } else {
-                    invalidChar = false;
                 }
                 if (letter3.length() == 0) {
                     letter2.setEnabled(true);
@@ -166,7 +159,6 @@ public class ColordleGame extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                System.out.println(letter4.getText());
                 if (!validChars.contains(letter4.getText())) {
                     letter4.removeTextChangedListener(this);
                     editable.replace(0, editable.length(),"");
@@ -190,7 +182,6 @@ public class ColordleGame extends AppCompatActivity {
         letter5.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -199,7 +190,6 @@ public class ColordleGame extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                System.out.println(letter5.getText());
                 if (!validChars.contains(letter5.getText())) {
                     letter5.removeTextChangedListener(this);
                     editable.replace(0, editable.length(),"");
@@ -232,7 +222,6 @@ public class ColordleGame extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                System.out.println(letter6.getText());
                 if (!validChars.contains(letter6.getText())) {
                     letter6.removeTextChangedListener(this);
                     editable.replace(0, editable.length(),"");
@@ -259,6 +248,7 @@ public class ColordleGame extends AppCompatActivity {
         gameInstance = new GameDataColordle();
         //sets image color to answer color
         Drawable background = imageView.getBackground();
+        System.out.println(gameInstance.getAnswerColordle2());
         background.setTint(Color.parseColor("#"+gameInstance.getAnswerColordle2()));
     }
 
@@ -270,11 +260,21 @@ public class ColordleGame extends AppCompatActivity {
 
     public void onBtnClickGuess(View view) {
         //set new letters?
+        System.out.println("These are the current letters");
+        System.out.println(letter1.getText());
+        System.out.println(letter2.getText());
+        System.out.println(letter3.getText());
+        System.out.println(letter4.getText());
+        System.out.println(letter5.getText());
+        System.out.println(letter6.getText());
 
+        System.out.println("Are all boxes filled?");
         //Check if all boxes are filled
-        if (lastBox == false) {
+        if (!lastBox) {
+            System.out.println("No");
             return;
         }
+        System.out.println("Yes");
 
         //Create array of guesses
         EditText[] guesses = {
@@ -324,13 +324,27 @@ public class ColordleGame extends AppCompatActivity {
     }
 
     public void animateSquare(View view, EditText letter, int type) {
+        Drawable background = letter.getBackground();
         if (type == 2) {
             //correct
+            flip(view, letter);
+            background.setTint(getColor(R.color.correct));
         } else if (type == 1) {
             //Incorrect Position
+            flip(view, letter);
+            background.setTint(getColor(R.color.inplace));
         } else {
-            //Incorrect
+            flip(view, letter);
+            background.setTint(getColor(R.color.wrong));
         }
+    }
+
+    public void flip(View view, EditText letterFront) {
+        final ObjectAnimator front = ObjectAnimator.ofFloat(letterFront, "rotationX", 180f, 0f);
+        final ObjectAnimator back = ObjectAnimator.ofFloat(letterFront, "rotationX", 0f, 90f);
+        front.setInterpolator(new AccelerateDecelerateInterpolator());
+        front.setDuration(500);
+        front.start();
     }
 
     public void changeObjectsPositionDown(View view, EditText[] letters, int[] results) {
