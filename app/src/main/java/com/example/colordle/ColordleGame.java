@@ -339,15 +339,15 @@ public class ColordleGame extends AppCompatActivity {
             return;
         }
 
+        //lower ui try count
+        EditText tries = findViewById(R.id.triesNum);
+        tries.setText(String.valueOf(gameInstance.getTries()));
+
         //check if all tries are up
         if (gameInstance.getTries() == 0) {
             loseGame(view);
             return;
         }
-
-        //lower ui try count
-        EditText tries = findViewById(R.id.triesNum);
-        tries.setText(String.valueOf(gameInstance.getTries()));
     }
 
     public void updateVars() {
