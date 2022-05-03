@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -452,12 +453,24 @@ public class ColordleGame extends AppCompatActivity {
 
     public void winGame(View view) {
         //Won the game
-        showPopup(view, true);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showPopup(view, true);
+            }
+        },1000);
     }
 
     public void loseGame(View view) {
         //Lost the game
-        showPopup(view, false);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showPopup(view, false);
+            }
+        },1000);
     }
 
 }
