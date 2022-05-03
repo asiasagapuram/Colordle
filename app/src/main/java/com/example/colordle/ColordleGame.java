@@ -2,6 +2,8 @@ package com.example.colordle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
@@ -255,6 +257,7 @@ public class ColordleGame extends AppCompatActivity {
     public void onBtnClickMainPage(View view) {
         //button to go back to main page (temp)
         startActivity(new Intent(this, MainActivity.class));
+        gameInstance = null;
         finish();
     }
 
@@ -303,8 +306,11 @@ public class ColordleGame extends AppCompatActivity {
 
         //Animate Squares
         for (int i = 0; i < result.length; i++) {
-            animateSquare(view, guesses[i], result[i]);
+            flip(guesses[i], result[i]);
         }
+
+        //setGuessButton color
+        setBtnColor("#"+String.join("", guess));
 
         //check if guess is correct
         if (Arrays.stream(result).allMatch(s -> s == 2)) {
@@ -317,39 +323,49 @@ public class ColordleGame extends AppCompatActivity {
         if (gameInstance.getTries() == 6) {
             loseGame(view);
         }
-
-        //creates guessed uneditable copies to take the spot of the previous
-        //resets and shifts them down
-        changeObjectsPositionDown(view, guesses, result);
     }
 
-    public void animateSquare(View view, EditText letter, int type) {
+    public void setBtnColor(String color) {
+        Drawable background = guessBtn.getBackground();
+        if (!isLight(color)) {
+            guessBtn.setTextColor(getColor(R.color.white));
+        } else {
+            guessBtn.setTextColor(getColor(R.color.black));
+        }
+        background.setTint(Color.parseColor(color));
+    }
+
+    public boolean isLight(String color) {
+        int rgb = Color.parseColor(color);
+        int r = (rgb >> 16) & 0xff;
+        int g = (rgb >> 8) & 0xff;
+        int b = (rgb >> 0) & 0xff;
+        return ((0.2126*r + 0.7152*g + 0.0722*b) >= 128);
+    }
+
+    public void setColor(EditText letter, int type) {
         Drawable background = letter.getBackground();
         if (type == 2) {
-            //correct
-            flip(view, letter);
             background.setTint(getColor(R.color.correct));
         } else if (type == 1) {
-            //Incorrect Position
-            flip(view, letter);
             background.setTint(getColor(R.color.inplace));
         } else {
-            flip(view, letter);
             background.setTint(getColor(R.color.wrong));
         }
     }
 
-    public void flip(View view, EditText letterFront) {
-        final ObjectAnimator front = ObjectAnimator.ofFloat(letterFront, "rotationX", 180f, 0f);
-        final ObjectAnimator back = ObjectAnimator.ofFloat(letterFront, "rotationX", 0f, 90f);
+    public void flip(EditText letter, int type) {
+        final ObjectAnimator front = ObjectAnimator.ofFloat(letter, "rotationX", 180f, 0f);
         front.setInterpolator(new AccelerateDecelerateInterpolator());
-        front.setDuration(500);
+        front.setDuration(400);
+        front.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                setColor(letter, type);
+            }
+        });
         front.start();
-    }
-
-    public void changeObjectsPositionDown(View view, EditText[] letters, int[] results) {
-        //Changes Position of the objects down and sets previous button color
-
     }
 
     public void winGame(View view) {
