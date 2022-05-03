@@ -5,17 +5,19 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class GameDataColordle implements GameInterfaceColordle {
-    private String answerColordle2; //for colordle 2
-    private String[] answerColordle; //for colordle 1
-    private HashMap<String, Integer> prevGuesses; //for Colordle 1
+    private final String answerColordle2; //for colordle 2
+    private final String[] answerColordle; //for colordle 1
+    private HashMap<Integer, Integer> prevGuesses; //for Colordle 1
     private int tries;
 
     public GameDataColordle() {
         String hex = String.format("#%06x", new Random().nextInt(0xffffff + 1)).substring(1).toUpperCase();
         this.answerColordle2 = hex;
         this.answerColordle = hex.split("");
-        this.tries = 0;
-        this.prevGuesses = new HashMap<String, Integer>();
+        this.tries = 6;
+        this.prevGuesses = new HashMap<>();
+        this.prevGuesses.put(1,1);
+
     }
 
     @Override // used to check data when doing front end tests
@@ -33,8 +35,12 @@ public class GameDataColordle implements GameInterfaceColordle {
         return answerColordle;
     }
 
-    public HashMap<String, Integer> getPrevGuesses() {
+    public HashMap<Integer, Integer> getPrevGuesses() {
         return prevGuesses;
+    }
+
+    public void setPrevGuesses(int key, int value) {
+        this.prevGuesses.put(key, value);
     }
 
     public int getTries() { return tries; }
@@ -42,7 +48,7 @@ public class GameDataColordle implements GameInterfaceColordle {
     @Override
     public int[] checkGuess(String[] currGuess) {
         //0 = wrong, 1 = wrong spot, 2 = correct spot
-        tries += 1;
+        tries -= 1;
         //check if null
         if (currGuess == null || answerColordle == null) {
             return null;
@@ -54,9 +60,9 @@ public class GameDataColordle implements GameInterfaceColordle {
         for (int i=0; i < currGuess.length; i++) {
             //fill results
             results[i] = (currGuess[i].toUpperCase().equals(answerColordle[i])) ? 2 : (Arrays.asList(answerColordle).contains(currGuess[i].toUpperCase()) ? 1 : 0);
-            //fill with previous guesses
-            if (!prevGuesses.containsKey(currGuess[i])) {
-                prevGuesses.put(currGuess[i], results[i]);
+            //save guess as prev guess
+            if (tries == 5) {
+                prevGuesses.put(i, results[i]);
             }
         }
 

@@ -10,4 +10,5 @@
     <color name="wrong">#999999</color>
     <color name="inplace">#ffcf66</color>
     <color name="correct">#66c666</color>
+    <color name="light_blue">#99ccff</color>
 </resources>

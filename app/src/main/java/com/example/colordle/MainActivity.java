@@ -3,14 +3,26 @@ package com.example.colordle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView title;
+    private Button play1;
+    private Button play2;
+    private Button help;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_main);
 
         //TODO need to implement page switching
@@ -20,34 +32,66 @@ public class MainActivity extends AppCompatActivity {
         //@colors.secondary_color
         //@colors.third_color
 
-        //IDEA FOR IMPLEMENTATION OF CLASSES
-        //on main page select either colordle or colordle2
-        //on page entry of colordle, instantiates GameDataColordle class
-        //Answer is auto generated upon class instantiation
-        //person enters letters and numbers for guess
-        //presses guess, grabs guess data
-        //guess button calls checkGuess method
-        //checkGuess method returns a list of values [0,1,2,0,0,1]
-        //0 = totally wrong, 1 = wrong place in answer, 2 = correct both
-        //display prevGuesses.
-        //when guessed or failed display popup and go back to button to go back to main menu
         // COLORDLE 2
         //
+        initializer();
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mediaPlayer.stop();
+        mediaPlayer.release();
+    }
+
+    public void initializer() {
+        title = findViewById(R.id.mainTitle);
+        play1 = findViewById(R.id.playColordle);
+        play2 = findViewById(R.id.playColordle2);
+        help = findViewById(R.id.Help);
+        startAnimations();
+
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.twinkle);
+        mediaPlayer.start();
+    }
+
+    public void startAnimations() {
+        Animation floating = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
+        Animation floating2 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
+        Animation floating3 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
+        Animation floating4 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
+        floating2.setStartOffset(200);
+        floating3.setStartOffset(400);
+        floating4.setStartOffset(600);
+        title.startAnimation(floating);
+        play1.startAnimation(floating2);
+        play2.startAnimation(floating3);
+        help.startAnimation(floating4);
     }
 
     public void onBtnClickColordle(View view) {
         startActivity(new Intent(this, ColordleGame.class));
+        mediaPlayer.stop();
+        mediaPlayer.release();
         finish();
     }
 
     public void onBtnClickColordle2(View view) {
         startActivity(new Intent(this, Colordle2Game.class));
+        mediaPlayer.stop();
+        mediaPlayer.release();
         finish();
     }
 
     public void onBtnClickHelp(View view) {
         startActivity(new Intent(this, Help.class));
+        mediaPlayer.stop();
+        mediaPlayer.release();
         finish();
     }
 }

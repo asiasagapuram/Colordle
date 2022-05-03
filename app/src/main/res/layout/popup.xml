@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/popupText"
+        android:layout_width="280dp"
+        android:layout_height="230dp"
+        android:layout_centerInParent="true"
+        android:layout_margin="0dp"
+        android:textSize="40dp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:text="Text to be Replaced"
+        android:background="@drawable/popup_background"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/popupText"
+        android:layout_centerHorizontal="true"
+        android:text="Main Menu"
+        android:background="@drawable/main_menu_buttons"
+        android:onClick="onBtnClickMainPage"
+        />
+
+</RelativeLayout>
