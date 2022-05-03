@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         mediaPlayer.stop();
-        mediaPlayer.release();
     }
 
     public void initializer() {
@@ -76,22 +75,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBtnClickColordle(View view) {
         startActivity(new Intent(this, ColordleGame.class));
-        mediaPlayer.stop();
-        mediaPlayer.release();
         finish();
     }
 
     public void onBtnClickColordle2(View view) {
         startActivity(new Intent(this, Colordle2Game.class));
-        mediaPlayer.stop();
-        mediaPlayer.release();
         finish();
     }
 
     public void onBtnClickHelp(View view) {
         startActivity(new Intent(this, Help.class));
-        mediaPlayer.stop();
-        mediaPlayer.release();
         finish();
     }
 }
