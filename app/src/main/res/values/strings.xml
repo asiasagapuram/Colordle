@@ -5,6 +5,5 @@
     <string name="help">How To Play</string>
     <string name="colordle_1">Colordle 1</string>
     <string name="colordle_2">Colordle 2</string>
-    <string name="back">Back</string>
-    <string name="guess">Guess</string>
+    <string name="back">TempBackBtn</string>
 </resources>
