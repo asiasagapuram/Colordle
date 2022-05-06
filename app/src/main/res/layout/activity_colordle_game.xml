@@ -4,37 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/base_color"
+    android:background="@color/white"
     tools:context=".ColordleGame"
     tools:ignore="LabelFor">
 
     <TextView
         android:id="@+id/Colordle1Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/colordle_1"
-        android:textSize="20pt"
+        android:layout_width="413dp"
+        android:layout_height="42dp"
+        android:background="@color/black"
+        android:paddingTop="3dp"
+        android:shadowColor="#C01AEC"
+        android:shadowDx="8.9"
+        android:shadowDy="7.3"
+        android:shadowRadius="1.3"
+        android:text="@string/game_title_1"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="664dp"
         android:layout_marginEnd="286dp"
         android:background="@drawable/main_menu_buttons"
         android:onClick="onBtnClickMainPage"
         android:text="@string/back"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:layout_width="0.0dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/base_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editText1"
@@ -184,10 +204,10 @@
         android:background="@drawable/color_square"
         app:layout_constraintBottom_toTopOf="@+id/editText4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Colordle1Title"
-        app:layout_constraintVertical_bias="0.076"
+        app:layout_constraintVertical_bias="0.171"
         tools:ignore="contentDescription,ImageContrastCheck" />
 
     <EditText
@@ -197,18 +217,18 @@
         android:layout_marginStart="11dp"
         android:background="@drawable/text_square2"
         android:ems="10"
-        android:focusable="false"
         android:enabled="false"
+        android:focusable="false"
         android:gravity="center"
         android:importantForAutofill="no"
         android:inputType="textVisiblePassword|textCapCharacters"
         android:maxLength="1"
         android:text=""
         android:textAllCaps="true"
-        tools:ignore="SpeakableTextPresentCheck"
         app:layout_constraintBottom_toTopOf="@+id/editText1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/colorAnswer"/>
+        app:layout_constraintTop_toBottomOf="@+id/colorAnswer"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
     <EditText
@@ -218,18 +238,18 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/text_square2"
         android:ems="10"
-        android:focusable="false"
         android:enabled="false"
+        android:focusable="false"
         android:gravity="center"
         android:importantForAutofill="no"
         android:inputType="textVisiblePassword|textCapCharacters"
         android:maxLength="1"
         android:text=""
         android:textAllCaps="true"
-        tools:ignore="SpeakableTextPresentCheck"
         app:layout_constraintBottom_toTopOf="@+id/editText2"
         app:layout_constraintStart_toEndOf="@+id/hint1"
-        app:layout_constraintTop_toBottomOf="@+id/colorAnswer" />
+        app:layout_constraintTop_toBottomOf="@+id/colorAnswer"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/hint3"
@@ -238,18 +258,18 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/text_square2"
         android:ems="10"
-        android:focusable="false"
         android:enabled="false"
+        android:focusable="false"
         android:gravity="center"
         android:importantForAutofill="no"
         android:inputType="textVisiblePassword|textCapCharacters"
         android:maxLength="1"
         android:text=""
         android:textAllCaps="true"
-        tools:ignore="SpeakableTextPresentCheck"
         app:layout_constraintBottom_toTopOf="@+id/editText3"
         app:layout_constraintStart_toEndOf="@+id/hint2"
-        app:layout_constraintTop_toBottomOf="@+id/colorAnswer" />
+        app:layout_constraintTop_toBottomOf="@+id/colorAnswer"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/hint4"
@@ -258,18 +278,18 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/text_square2"
         android:ems="10"
-        android:focusable="false"
         android:enabled="false"
+        android:focusable="false"
         android:gravity="center"
         android:importantForAutofill="no"
         android:inputType="textVisiblePassword|textCapCharacters"
         android:maxLength="1"
         android:text=""
         android:textAllCaps="true"
-        tools:ignore="SpeakableTextPresentCheck"
         app:layout_constraintBottom_toTopOf="@+id/editText4"
         app:layout_constraintStart_toEndOf="@+id/hint3"
-        app:layout_constraintTop_toBottomOf="@+id/colorAnswer" />
+        app:layout_constraintTop_toBottomOf="@+id/colorAnswer"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/hint5"
@@ -278,18 +298,18 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/text_square2"
         android:ems="10"
-        android:focusable="false"
         android:enabled="false"
+        android:focusable="false"
         android:gravity="center"
         android:importantForAutofill="no"
         android:inputType="textVisiblePassword|textCapCharacters"
         android:maxLength="1"
         android:text=""
         android:textAllCaps="true"
-        tools:ignore="SpeakableTextPresentCheck"
         app:layout_constraintBottom_toTopOf="@+id/editText5"
         app:layout_constraintStart_toEndOf="@+id/hint4"
-        app:layout_constraintTop_toBottomOf="@+id/colorAnswer" />
+        app:layout_constraintTop_toBottomOf="@+id/colorAnswer"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/hint6"
@@ -298,18 +318,18 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/text_square2"
         android:ems="10"
-        android:focusable="false"
         android:enabled="false"
+        android:focusable="false"
         android:gravity="center"
         android:importantForAutofill="no"
         android:inputType="textVisiblePassword|textCapCharacters"
         android:maxLength="1"
         android:text=""
         android:textAllCaps="true"
-        tools:ignore="SpeakableTextPresentCheck"
         app:layout_constraintBottom_toTopOf="@+id/editText6"
         app:layout_constraintStart_toEndOf="@+id/hint5"
-        app:layout_constraintTop_toBottomOf="@+id/colorAnswer" />
+        app:layout_constraintTop_toBottomOf="@+id/colorAnswer"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/triesText"
@@ -317,11 +337,12 @@
         android:layout_height="48dp"
         android:background="@null"
         android:ems="10"
+        android:focusable="false"
         android:gravity="center"
         android:inputType="none"
-        android:text="Guess"
-        android:textSize="14dp"
-        android:focusable="false"
+        android:text="@string/guess"
+        android:textSize="14sp"
+        android:autofillHints="none"
         app:layout_constraintBottom_toTopOf="@+id/colorGuess1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
@@ -336,11 +357,11 @@
         android:layout_height="48dp"
         android:background="@null"
         android:ems="10"
+        android:focusable="false"
         android:gravity="center"
         android:inputType="none"
-        android:text="6"
-        android:textSize="16dp"
-        android:focusable="false"
+        android:text="@string/num_guesses"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/colorGuess1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
@@ -348,5 +369,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,8 +3,10 @@
     <string name="play_colordle">Play Colordle</string>
     <string name="play_colordle2">Play Colordle 2</string>
     <string name="help">How To Play</string>
-    <string name="colordle_1">Colordle 1</string>
+    <string name="colordle_1">Colordle</string>
     <string name="colordle_2">Colordle 2</string>
     <string name="back">Back</string>
     <string name="guess">Guess</string>
+    <string name="num_guesses">6</string>
+    <string name="game_title_1">C O L O R D L E</string>
 </resources>
