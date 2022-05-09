@@ -8,13 +8,13 @@
                 <solid android:color="@color/mid_color" />
             </shape>
         </item>
-        <item android:bottom="4dp" android:left="2dp">
+        <item android:bottom="4dp" android:left="3dp">
             <shape>
                 <gradient
-                    android:angle="0"
+                    android:angle="17"
                     android:centerX="50%"
-                    android:startColor="@color/secondary_color"
-                    android:endColor="@color/secondary_color"
+                    android:startColor="@color/misc2"
+                    android:endColor="@color/misc"
                     android:type="linear"
                     />
                 <corners android:radius="30dp" />
@@ -23,6 +23,10 @@
                 <size
                     android:width="270dp"
                     android:height="60dp"
+                    />
+                <stroke
+                    android:width="2dp"
+                    android:color="@color/misc"
                     />
             </shape>
         </item>

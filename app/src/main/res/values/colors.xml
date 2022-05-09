@@ -5,10 +5,12 @@
     <color name="base_color">#d7eaf3</color>
     <color name="darkbase_color">#9fb4bf</color>
     <color name="secondary_color">#77b5d9</color>
-    <color name="mid_color">#5388B8</color>
+    <color name="mid_color">#d1c6f7</color>
     <color name="third_color">#14397d</color>
     <color name="wrong">#999999</color>
     <color name="inplace">#ffcf66</color>
     <color name="correct">#66c666</color>
     <color name="light_blue">#99ccff</color>
+    <color name="misc">#b2b6f7</color>
+    <color name="misc2">#8664f5</color>
 </resources>
