@@ -47,6 +47,7 @@
         tools:ignore="TextContrastCheck" />
 
     <TextView
+        android:id="@+id/font"
         android:layout_width="0.0dp"
         android:layout_height="4dp"
         android:layout_marginTop="40dp"
