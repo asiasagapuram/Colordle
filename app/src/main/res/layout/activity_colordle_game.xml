@@ -73,10 +73,10 @@
         android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53"
+        app:layout_constraintVertical_bias="0.437"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -97,7 +97,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53"
+        app:layout_constraintVertical_bias="0.436"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -118,7 +118,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53"
+        app:layout_constraintVertical_bias="0.436"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -139,7 +139,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53"
+        app:layout_constraintVertical_bias="0.436"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -160,14 +160,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53"
+        app:layout_constraintVertical_bias="0.436"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/editText6"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:background="@drawable/text_square"
         android:ems="10"
         android:enabled="false"
@@ -181,22 +181,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText5"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53"
+        app:layout_constraintVertical_bias="0.436"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/colorGuess1"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginLeft="216dp"
         android:background="@drawable/color_square"
         android:onClick="onBtnClickGuess"
         android:text="@string/guess"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/colorAnswer"
+        app:layout_constraintLeft_toLeftOf="@id/editText2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
+        app:layout_constraintVertical_bias="0.269" />
 
     <ImageView
         android:id="@+id/colorAnswer"
@@ -211,11 +211,12 @@
         app:layout_constraintVertical_bias="0.171"
         tools:ignore="contentDescription,ImageContrastCheck" />
 
+
     <EditText
         android:id="@+id/hint1"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="11dp"
+        android:layout_marginStart="40dp"
         android:background="@drawable/text_square2"
         android:ems="10"
         android:enabled="false"
@@ -229,8 +230,8 @@
         app:layout_constraintBottom_toTopOf="@+id/editText1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/colorAnswer"
+        app:layout_constraintVertical_bias="0.505"
         tools:ignore="SpeakableTextPresentCheck" />
-
 
     <EditText
         android:id="@+id/hint2"
@@ -310,13 +311,14 @@
         app:layout_constraintBottom_toTopOf="@+id/editText5"
         app:layout_constraintStart_toEndOf="@+id/hint4"
         app:layout_constraintTop_toBottomOf="@+id/colorAnswer"
+        app:layout_constraintVertical_bias="0.503"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/hint6"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:background="@drawable/text_square2"
         android:ems="10"
         android:enabled="false"
@@ -330,6 +332,7 @@
         app:layout_constraintBottom_toTopOf="@+id/editText6"
         app:layout_constraintStart_toEndOf="@+id/hint5"
         app:layout_constraintTop_toBottomOf="@+id/colorAnswer"
+        app:layout_constraintVertical_bias="0.505"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -346,10 +349,10 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/colorGuess1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/hint6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.78"
+        app:layout_constraintVertical_bias="0.453"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -368,7 +371,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/hint6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.894"
+        app:layout_constraintVertical_bias="0.565"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.constraintlayout.widget.Guideline
