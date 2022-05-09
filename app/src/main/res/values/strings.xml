@@ -14,4 +14,6 @@
     <string name="step2">grey: not in code<break/>\n\nyellow: wrong spot<break/>\n\n green: perfect! </string>
     <string name="step3">You have 6 tries to succeed. Good luck!</string>
     <string name="step4">good luck!</string>
+    <string name="win">You Won!!!</string>
+    <string name="lose">You Lose...</string>
 </resources>

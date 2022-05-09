@@ -1,8 +1,5 @@
 package com.example.colordle;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -15,7 +12,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
@@ -26,9 +22,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class ColordleGame extends AppCompatActivity {
 
@@ -322,6 +318,9 @@ public class ColordleGame extends AppCompatActivity {
         //CheckGuess
         int[] result = gameInstance.checkGuess(guess);
 
+        //show Hints
+        showHints();
+
         //Animate Squares
         for (int i = 0; i < result.length; i++) {
             //animate guess squares
@@ -349,6 +348,15 @@ public class ColordleGame extends AppCompatActivity {
             loseGame(view);
             return;
         }
+    }
+
+    public void showHints() {
+        hint1.setVisibility(View.VISIBLE);
+        hint2.setVisibility(View.VISIBLE);
+        hint3.setVisibility(View.VISIBLE);
+        hint4.setVisibility(View.VISIBLE);
+        hint5.setVisibility(View.VISIBLE);
+        hint6.setVisibility(View.VISIBLE);
     }
 
     public void updateVars() {
@@ -442,9 +450,9 @@ public class ColordleGame extends AppCompatActivity {
 
         TextView text = popupView.findViewById(R.id.popupText);
         if (win) {
-            text.setText("You Won!!!");
+            text.setText(R.string.win);
         } else {
-            text.setText("You Lost...");
+            text.setText(R.string.lose);
         }
 
         // show the popup window
@@ -455,23 +463,13 @@ public class ColordleGame extends AppCompatActivity {
     public void winGame(View view) {
         //Won the game
         final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                showPopup(view, true);
-            }
-        },1000);
+        handler.postDelayed(() -> showPopup(view, true),1000);
     }
 
     public void loseGame(View view) {
         //Lost the game
         final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                showPopup(view, false);
-            }
-        },1000);
+        handler.postDelayed(() -> showPopup(view, false),1000);
     }
 
 }
