@@ -53,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
         play1 = findViewById(R.id.playColordle);
         play2 = findViewById(R.id.playColordle2);
         help = findViewById(R.id.Help);
+       // howtoplay = findViewById(R.id.howtoplay);
+       // textview1 = findViewById(R.id.textView1);
+       // textview2 = findViewById(R.id.textView2);
+        //textview3 = findViewById(R.id.textView3);
+
+
         startAnimations();
 
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.twinkle);
@@ -64,13 +70,24 @@ public class MainActivity extends AppCompatActivity {
         Animation floating2 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
         Animation floating3 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
         Animation floating4 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
+        Animation floating5 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
+       // Animation floating6 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
+       // Animation floating7 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
+       // Animation floating8 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
         floating2.setStartOffset(200);
         floating3.setStartOffset(400);
         floating4.setStartOffset(600);
+       // floating6.setStartOffset(200);
+       // floating7.setStartOffset(400);
+       // floating8.setStartOffset(600);
         title.startAnimation(floating);
         play1.startAnimation(floating2);
         play2.startAnimation(floating3);
         help.startAnimation(floating4);
+       // howtoplay.startAnimation(floating5);
+       // textview1.startAnimation(floating6);
+       // textview2.startAnimation(floating7);
+        //textview3.startAnimation(floating8);
     }
 
     public void onBtnClickColordle(View view) {
