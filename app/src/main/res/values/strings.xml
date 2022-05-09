@@ -3,10 +3,15 @@
     <string name="play_colordle">Play Colordle</string>
     <string name="play_colordle2">Play Colordle 2</string>
     <string name="help">How To Play</string>
+    <string name="play">...HOW TO PLAY...</string>
     <string name="colordle_1">Colordle</string>
     <string name="colordle_2">Colordle 2</string>
     <string name="back">Back</string>
     <string name="guess">Guess</string>
     <string name="num_guesses">6</string>
     <string name="game_title_1">C O L O R D L E</string>
+    <string name="step1">Try to guess the hex code!</string>
+    <string name="step2">grey: not in code<break/>\n\nyellow: wrong spot<break/>\n\n green: perfect! </string>
+    <string name="step3">You have 6 tries to succeed. Good luck!</string>
+    <string name="step4">good luck!</string>
 </resources>
