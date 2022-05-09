@@ -344,7 +344,7 @@ public class ColordleGame extends AppCompatActivity {
         tries.setText(String.valueOf(gameInstance.getTries()));
 
         //check if all tries are up
-        if (gameInstance.getTries() == 0) {
+        if (gameInstance.getTries() <= 0) {
             loseGame(view);
             return;
         }
@@ -462,12 +462,14 @@ public class ColordleGame extends AppCompatActivity {
 
     public void winGame(View view) {
         //Won the game
+        guessBtn.setEnabled(false);
         final Handler handler = new Handler();
         handler.postDelayed(() -> showPopup(view, true),1000);
     }
 
     public void loseGame(View view) {
         //Lost the game
+        guessBtn.setEnabled(false);
         final Handler handler = new Handler();
         handler.postDelayed(() -> showPopup(view, false),1000);
     }
