@@ -291,7 +291,7 @@ public class ColordleGame extends AppCompatActivity {
 
     private void startGame() {
         //Creates game instance
-        gameInstance = new GameDataColordle();
+        gameInstance = GameDataColordle.getInstance();
         //sets image color to answer color
         Drawable background = imageView.getBackground().mutate();
         System.out.println(gameInstance.getAnswerColordle2());
@@ -301,6 +301,7 @@ public class ColordleGame extends AppCompatActivity {
     public void onBtnClickMainPage(View view) {
         //button to go back to main page (temp)
         popupWindow.dismiss();
+        gameInstance.resetInstance();
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }

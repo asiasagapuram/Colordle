@@ -5,19 +5,29 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class GameDataColordle implements GameInterfaceColordle {
+    private static GameDataColordle gameInstance;
     private final String answerColordle2; //for colordle 2
     private final String[] answerColordle; //for colordle 1
     private HashMap<Integer, Integer> prevGuesses; //for Colordle 1
     private int tries;
 
-    public GameDataColordle() {
+    private GameDataColordle() {
         String hex = String.format("#%06x", new Random().nextInt(0xffffff + 1)).substring(1).toUpperCase();
         this.answerColordle2 = hex;
         this.answerColordle = hex.split("");
         this.tries = 6;
         this.prevGuesses = new HashMap<>();
-        this.prevGuesses.put(1,1);
+    }
 
+    public static GameDataColordle getInstance() {
+        if (gameInstance == null) {
+            gameInstance = new GameDataColordle();
+        }
+        return gameInstance;
+    }
+
+    public void resetInstance() {
+        gameInstance = null;
     }
 
     @Override // used to check data when doing front end tests
