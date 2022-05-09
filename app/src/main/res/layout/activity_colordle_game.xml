@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/stars"
     tools:context=".ColordleGame"
     tools:ignore="LabelFor">
 
@@ -379,13 +379,15 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/hint6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.453"
+        app:layout_constraintVertical_bias="0.157"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/triesNum"
         android:layout_width="60dp"
         android:layout_height="48dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="16dp"
         android:background="@null"
         android:ems="10"
         android:focusable="false"
@@ -393,12 +395,8 @@
         android:inputType="none"
         android:text="@string/num_guesses"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/colorGuess1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/hint6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.548"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.constraintlayout.widget.Guideline
