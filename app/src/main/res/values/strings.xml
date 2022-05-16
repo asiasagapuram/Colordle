@@ -3,7 +3,7 @@
     <string name="play_colordle">Play Colordle</string>
     <string name="play_colordle2">Play Colordle 2</string>
     <string name="help">How To Play</string>
-    <string name="play">...HOW TO PLAY...</string>
+    <string name="play">…HOW TO PLAY…</string>
     <string name="colordle_1">Colordle</string>
     <string name="colordle_2">Colordle 2</string>
     <string name="back">Back</string>
@@ -15,5 +15,5 @@
     <string name="step3">You have 6 tries to succeed. Good luck!</string>
     <string name="step4">good luck!</string>
     <string name="win">You Won!!!</string>
-    <string name="lose">You Lose...</string>
+    <string name="lose">You Lose…</string>
 </resources>

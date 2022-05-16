@@ -26,6 +26,8 @@ public class GameDataColordle implements GameInterfaceColordle {
         return gameInstance;
     }
 
+    public static GameDataColordle getOnlyInstance() { return gameInstance;}
+
     public void resetInstance() {
         gameInstance = null;
     }
