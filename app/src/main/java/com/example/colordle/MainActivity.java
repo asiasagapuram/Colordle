@@ -25,15 +25,7 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_main);
 
-        //TODO need to implement page switching
-
-        //UI color palette follow 60|30|10 rule
-        //@colors.base_color
-        //@colors.secondary_color
-        //@colors.third_color
-
-        // COLORDLE 2
-        //
+        //calls initializer
         initializer();
     }
 
@@ -49,58 +41,48 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initializer() {
+        //Initializes Variables
         title = findViewById(R.id.mainTitle);
         play1 = findViewById(R.id.playColordle);
         play2 = findViewById(R.id.playColordle2);
         help = findViewById(R.id.Help);
-       // howtoplay = findViewById(R.id.howtoplay);
-       // textview1 = findViewById(R.id.textView1);
-       // textview2 = findViewById(R.id.textView2);
-        //textview3 = findViewById(R.id.textView3);
-
 
         startAnimations();
 
+        //plays music for title screen
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.twinkle);
         mediaPlayer.start();
     }
 
     public void startAnimations() {
-        Animation floating = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
+        //Starts the Animations
+        Animation floating1 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
         Animation floating2 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
         Animation floating3 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
         Animation floating4 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
-        Animation floating5 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
-       // Animation floating6 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
-       // Animation floating7 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
-       // Animation floating8 = AnimationUtils.loadAnimation(getApplication(), R.anim.floating);
         floating2.setStartOffset(200);
         floating3.setStartOffset(400);
         floating4.setStartOffset(600);
-       // floating6.setStartOffset(200);
-       // floating7.setStartOffset(400);
-       // floating8.setStartOffset(600);
-        title.startAnimation(floating);
+        title.startAnimation(floating1);
         play1.startAnimation(floating2);
         play2.startAnimation(floating3);
         help.startAnimation(floating4);
-       // howtoplay.startAnimation(floating5);
-       // textview1.startAnimation(floating6);
-       // textview2.startAnimation(floating7);
-        //textview3.startAnimation(floating8);
     }
 
     public void onBtnClickColordle(View view) {
+        //Switch activity page
         startActivity(new Intent(this, ColordleGame.class));
         finish();
     }
 
     public void onBtnClickColordle2(View view) {
+        //Switch activity page
         startActivity(new Intent(this, Colordle2Game.class));
         finish();
     }
 
     public void onBtnClickHelp(View view) {
+        //Switch activity page
         startActivity(new Intent(this, Help.class));
         finish();
     }

@@ -28,6 +28,7 @@ import java.util.Arrays;
 
 public class ColordleGame extends AppCompatActivity {
 
+    //Setting all views to be global so can be accessed from anywhere
     private GameDataColordle gameInstance;
     private Button guessBtn;
     private ImageView imageView;
@@ -53,9 +54,11 @@ public class ColordleGame extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Sets transitions for page swapping
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_colordle_game);
+
         //initializes Views
         initializeViews();
     }
@@ -73,6 +76,7 @@ public class ColordleGame extends AppCompatActivity {
     }
 
     private void initializeViews() {
+        //sets the variables to their views
         lastBox = false;
         imageView = findViewById(R.id.colorAnswer);
         letter1 = findViewById(R.id.editText1);
@@ -90,6 +94,7 @@ public class ColordleGame extends AppCompatActivity {
         guessBtn = findViewById(R.id.colorGuess1);
         validChars = "0123456789ABCDEFabcdef";
 
+        //calls an update variable function that will repeated later
         updateVars();
 
         // inflate the layout of the popup window
@@ -102,6 +107,7 @@ public class ColordleGame extends AppCompatActivity {
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         popupWindow = new PopupWindow(popupView, width, height, false);
 
+        //adds listeners to autoswitch textboxes
         letter1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -351,6 +357,7 @@ public class ColordleGame extends AppCompatActivity {
     }
 
     public void showHints() {
+        //This makes the hints visible
         hint1.setVisibility(View.VISIBLE);
         hint2.setVisibility(View.VISIBLE);
         hint3.setVisibility(View.VISIBLE);
@@ -398,6 +405,7 @@ public class ColordleGame extends AppCompatActivity {
     }
 
     public void setBtnColor(String color) {
+        //changes the guess button color and text color everytime it is pressed
         Drawable background = guessBtn.getBackground().mutate();
         if (!isLight(color)) {
             guessBtn.setTextColor(getColor(R.color.white));
@@ -408,6 +416,7 @@ public class ColordleGame extends AppCompatActivity {
     }
 
     public boolean isLight(String color) {
+        //checks to see if the passed in color is darker or lighter
         int rgb = Color.parseColor(color);
         int r = (rgb >> 16) & 0xff;
         int g = (rgb >> 8) & 0xff;
@@ -416,6 +425,7 @@ public class ColordleGame extends AppCompatActivity {
     }
 
     public void setColor(EditText letter, int type) {
+        //sets color of hints and guess boxes
         Drawable background = letter.getBackground().mutate();
         if (type == 2) {
             background.setTint(getColor(R.color.correct));
@@ -427,6 +437,7 @@ public class ColordleGame extends AppCompatActivity {
     }
 
     public void flip(EditText letter, int type) {
+        //flip animation
         final ObjectAnimator front = ObjectAnimator.ofFloat(letter, "rotationX", 180f, 0f);
         front.setInterpolator(new AccelerateDecelerateInterpolator());
         front.setDuration(400);
@@ -448,6 +459,7 @@ public class ColordleGame extends AppCompatActivity {
         Button back = findViewById(R.id.button);
         back.setEnabled(false);
 
+        //sets text box text for win and lose
         TextView text = popupView.findViewById(R.id.popupText);
         if (win) {
             text.setText(R.string.win);
