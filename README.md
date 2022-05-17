@@ -14,6 +14,10 @@ Note: When submitting a guess, you must backspace to the first square if you wis
 Colordle was developed with Java and Android Studio, and will run on most Android devices. If you do not have an Android device, you can utilize 
 the emulator built into Android Studio or find an Android emulator online.
 
+## Continuing Developments
+Complete Colordle 2, fix box switching issue as outlined above, and add an application-local hex keyboard. The addition of the keyword will remove
+extraneous characters and free up more page space for the application. Stay tuned.
+
 ## Contributors
 Colordle was written by Asia Sagapuram and Jason Dinh.
 
